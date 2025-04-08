@@ -43,6 +43,6 @@
 
     <ItemGroup>
         <PackageReference Include="Soenneker.Utils.Json" Version="3.0.2301" />
-        <PackageReference Include="Soenneker.Zelos.Abstract" Version="3.0.130" />
+        <PackageReference Include="Soenneker.Zelos.Abstract" Version="3.0.132" />
     </ItemGroup>
 </Project>
