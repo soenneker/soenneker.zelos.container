@@ -13,7 +13,7 @@ using Soenneker.Zelos.Abstract;
 namespace Soenneker.Zelos.Container;
 
 ///<inheritdoc cref="IZelosContainer"/>
-public class ZelosContainer : IZelosContainer
+public sealed class ZelosContainer : IZelosContainer
 {
     private readonly string _containerName;
     private ConcurrentDictionary<string, string> _items;
