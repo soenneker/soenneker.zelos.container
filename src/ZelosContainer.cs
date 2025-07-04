@@ -171,7 +171,5 @@ public sealed class ZelosContainer : IZelosContainer
 
         _items.Clear();
         _items = null!;
-
-        GC.SuppressFinalize(this);
     }
 }
