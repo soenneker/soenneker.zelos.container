@@ -42,7 +42,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Soenneker.Utils.Json" Version="3.0.2354" />
+        <PackageReference Include="Soenneker.Utils.Json" Version="3.0.2355" />
         <PackageReference Include="Soenneker.Zelos.Abstract" Version="3.0.165" />
     </ItemGroup>
 </Project>
