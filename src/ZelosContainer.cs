@@ -14,7 +14,7 @@ using Soenneker.Zelos.Abstract;
 namespace Soenneker.Zelos.Container;
 
 /// <inheritdoc cref="IZelosContainer"/>
-public sealed class ZelosContainer : IZelosContainer, IDisposable
+public sealed class ZelosContainer : IZelosContainer
 {
     private readonly string _containerName;
     private readonly IZelosDatabase _database;
