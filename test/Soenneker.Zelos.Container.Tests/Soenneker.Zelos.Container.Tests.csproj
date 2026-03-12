@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.Zelos.Container.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Zelos.Container\Soenneker.Zelos.Container.csproj" />
     </ItemGroup>
 
     <ItemGroup>
