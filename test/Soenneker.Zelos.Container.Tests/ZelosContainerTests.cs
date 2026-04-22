@@ -1,17 +1,16 @@
-﻿using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.Zelos.Container.Tests;
 
-[Collection("Collection")]
-public class ZelosContainerTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public class ZelosContainerTests : HostedUnitTest
 {
-    public ZelosContainerTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public ZelosContainerTests(Host host) : base(host)
     {
 
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
