@@ -58,6 +58,13 @@ public sealed class ZelosContainer : IZelosContainer
             throw new ObjectDisposedException(nameof(ZelosContainer), $"Container '{_containerName}' is disposed.");
     }
 
+    /// <summary>
+    /// Adds item.
+    /// </summary>
+    /// <param name="id">The identifier.</param>
+    /// <param name="item">The item.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the result of the operation.</returns>
     public async ValueTask<string> AddItem(string id, string item, CancellationToken cancellationToken = default)
     {
         ThrowIfDisposed();
@@ -69,6 +76,11 @@ public sealed class ZelosContainer : IZelosContainer
         return item;
     }
 
+    /// <summary>
+    /// Builds queryable.
+    /// </summary>
+    /// <typeparam name="T">The T type.</typeparam>
+    /// <returns>The result of the operation.</returns>
     public IQueryable<T> BuildQueryable<T>()
     {
         ThrowIfDisposed();
@@ -96,12 +108,22 @@ public sealed class ZelosContainer : IZelosContainer
         return result.AsQueryable();
     }
 
+    /// <summary>
+    /// Gets item.
+    /// </summary>
+    /// <param name="id">The identifier.</param>
+    /// <returns>The result of the operation.</returns>
     public string? GetItem(string id)
     {
         ThrowIfDisposed();
         return _items.GetValueOrDefault(id);
     }
 
+    /// <summary>
+    /// Gets item strict.
+    /// </summary>
+    /// <param name="id">The identifier.</param>
+    /// <returns>The result of the operation.</returns>
     public string GetItemStrict(string id)
     {
         ThrowIfDisposed();
@@ -112,6 +134,13 @@ public sealed class ZelosContainer : IZelosContainer
         throw new KeyNotFoundException($"Could not find item ({id})");
     }
 
+    /// <summary>
+    /// Updates item.
+    /// </summary>
+    /// <param name="id">The identifier.</param>
+    /// <param name="item">The item.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the result of the operation.</returns>
     public async ValueTask<string?> UpdateItem(string id, string item, CancellationToken cancellationToken = default)
     {
         ThrowIfDisposed();
@@ -130,6 +159,13 @@ public sealed class ZelosContainer : IZelosContainer
         return item;
     }
 
+    /// <summary>
+    /// Updates item strict.
+    /// </summary>
+    /// <param name="id">The identifier.</param>
+    /// <param name="item">The item.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the result of the operation.</returns>
     public async ValueTask<string> UpdateItemStrict(string id, string item, CancellationToken cancellationToken = default)
     {
         ThrowIfDisposed();
@@ -148,6 +184,12 @@ public sealed class ZelosContainer : IZelosContainer
         return item;
     }
 
+    /// <summary>
+    /// Deletes item.
+    /// </summary>
+    /// <param name="id">The identifier.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
     public async ValueTask DeleteItem(string id, CancellationToken cancellationToken = default)
     {
         ThrowIfDisposed();
@@ -158,18 +200,30 @@ public sealed class ZelosContainer : IZelosContainer
         await _database.MarkDirty(_containerName, cancellationToken).NoSync();
     }
 
+    /// <summary>
+    /// Gets all items.
+    /// </summary>
+    /// <returns>The result of the operation.</returns>
     public List<string> GetAllItems()
     {
         ThrowIfDisposed();
         return _items.Values.ToList();
     }
 
+    /// <summary>
+    /// Gets all ids.
+    /// </summary>
+    /// <returns>The result of the operation.</returns>
     public List<string> GetAllIds()
     {
         ThrowIfDisposed();
         return _items.Keys.ToList();
     }
 
+    /// <summary>
+    /// Gets zelos items.
+    /// </summary>
+    /// <returns>The result of the operation.</returns>
     public List<IdValuePair> GetZelosItems()
     {
         ThrowIfDisposed();
@@ -182,6 +236,11 @@ public sealed class ZelosContainer : IZelosContainer
         return items;
     }
 
+    /// <summary>
+    /// Deletes all items.
+    /// </summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
     public async ValueTask DeleteAllItems(CancellationToken cancellationToken = default)
     {
         ThrowIfDisposed();
@@ -190,6 +249,9 @@ public sealed class ZelosContainer : IZelosContainer
         await _database.MarkDirty(_containerName, cancellationToken).NoSync();
     }
 
+    /// <summary>
+    /// Releases resources used by the current instance.
+    /// </summary>
     public void Dispose()
     {
         // first caller wins
