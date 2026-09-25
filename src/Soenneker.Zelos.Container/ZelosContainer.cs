@@ -1,4 +1,5 @@
-﻿using System;
+using System.Text.Json.Serialization.Metadata;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,8 @@ public sealed class ZelosContainer : IZelosContainer
     /// </summary>
     /// <typeparam name="T">The T type.</typeparam>
     /// <returns>The result of the operation.</returns>
-    public IQueryable<T> BuildQueryable<T>()
+    /// <param name="typeInfo">Source-generated JSON metadata and serialization options for the value.</param>
+    public IQueryable<T> BuildQueryable<T>(JsonTypeInfo<T> typeInfo)
     {
         ThrowIfDisposed();
 
@@ -93,7 +95,7 @@ public sealed class ZelosContainer : IZelosContainer
 
             try
             {
-                deserialized = JsonUtil.Deserialize<T>(kvp.Value);
+                deserialized = JsonUtil.Deserialize<T>(kvp.Value, typeInfo);
             }
             catch (Exception ex)
             {
